@@ -5,7 +5,8 @@ FSJS project 2 - List Filter and Pagination
    
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
-
+const studentList = document.querySelector('.student-list');
+const students = studentList.children;
 /*** 
    Add your global variables that store the DOM elements you will 
    need to reference and/or manipulate. 
@@ -34,7 +35,16 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-
+const showPage = (list, page) => {
+   for (let i = 0; i < students.length; i++){
+      const student = 
+      if(student >= 0 && student <= 9){
+         student.style.display = '';
+      } else {
+         student.style.display = 'none';
+      }
+   }
+}
 
 
 
