@@ -41,10 +41,26 @@ const showPage = (list, page) => {
 ***/
 
 const appendPageLinks = (list) => {
+   //get the first instance of the page class which is the main container div
+   const webPage = document.querySelector('.page');
+   //Determine number of pages needed for given list
    const pages = Math.ceil(list.length / 10);
    
+   //Create and append the div
+   const div = document.createElement('div');
+   div.className = 'pagination';
+   webPage.appendChild(div);
+
+   //Create and append ul to store pagination links
+   const ul = document.createElement('ul');
+   div.appendChild(ul);
+
+   //Create li's and a tags for however many pages are needed
+   for(let i = 1; i <= pages; i++){
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.textContent = i;
+      li.appendChild(a);
+   }
 }
 
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
