@@ -41,10 +41,10 @@ const showPage = (list, page) => {
       const maxIndex = (page * 10) - 1;
       //Define the minumum index of a page
       const minIndex = (page * 10) - 10;
-
-      const student = list.keys();
+      //Capture loops current student
+      const student = list[i];
       
-      if (student.value >= minIndex && student.value <= maxIndex){
+      if (student >= minIndex && student <= maxIndex){
          student.style.display = '';
       } else {
          student.style.display = 'none';
