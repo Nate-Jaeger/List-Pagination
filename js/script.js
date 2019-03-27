@@ -40,7 +40,10 @@ const showPage = (list, page) => {
    functionality to the pagination buttons.
 ***/
 
-
+const appendPageLinks = (list) => {
+   const pages = Math.ceil(list.length / 10);
+   
+}
 
 
 
