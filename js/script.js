@@ -61,6 +61,11 @@ const appendPageLinks = (list) => {
       const a = document.createElement('a');
       a.textContent = i;
       li.appendChild(a);
+      ul.appendChild(li);
+
+      a.addEventListener('click', (e) => {
+         showPage(list, e.target.textContent);
+      });
    }
 }
 
