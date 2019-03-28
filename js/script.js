@@ -2,17 +2,14 @@
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
-   
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
 const studentList = document.querySelector('.student-list').children;
+
 
 //Hide all students except the ones on page you want to show
 const showPage = (list, page) => {
    for (let i = 0; i < list.length; i++){
-      //Define the max index of a page
       const maxIndex = (page * 10) - 1;
-      //Define the minumum index of a page
       const minIndex = (page * 10) - 10;
       
       if (i >= minIndex && i <= maxIndex){
@@ -53,21 +50,21 @@ const appendPageLinks = (list) => {
       ul.appendChild(li);
    }
 
-   //Select all a tags on page
+   //Select all newly created <a> tags
    const aTags = document.querySelectorAll('a');
    
-   //Loop over all a tags and add an event listener to each
+   //Loop over all <a> tags and add an event listener to each
    for(let i = 0; i < aTags.length; i++){
-      //Give each a tag an event listener
+      //Give each <a> tag an event listener
       aTags[i].addEventListener('click', (e) => {
          showPage(list, e.target.textContent);
 
-         //Clear active class from each aTag
+         //Clear active class from each <a> tag
          for(let i = 0; i < pages; i++){
             aTags[i].className = 'inActive';
          }
 
-         //assign the class active to the currently clicked button
+         //Assign the class active to the currently clicked button
          event.target.className = 'active';
       });
    }
