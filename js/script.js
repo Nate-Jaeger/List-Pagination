@@ -33,6 +33,7 @@ const showPage = (list, page) => {
    }
 }
 
+showPage(studentList, 1);
 
 
 /*** 
@@ -62,11 +63,25 @@ const appendPageLinks = (list) => {
       a.textContent = i;
       li.appendChild(a);
       ul.appendChild(li);
+   }
 
+   //Select all a tags on page
+   const aTags = document.querySelectorAll('a');
+   
+   //Loop over all a tags and add an event listener to each
+   for(let i = 1; i <= aTags.length; i++){
       //Give each a tag an event listener
-      a.addEventListener('click', (e) => {
+      aTags[i].addEventListener('click', (e) => {
          showPage(list, e.target.textContent);
+
+         for(let i = 1; i <= pages; i++){
+            event.target.className = '';
+         }
+
+         event.target.className = 'active';
       });
    }
+   
 }
 
+appendPageLinks(studentList);
