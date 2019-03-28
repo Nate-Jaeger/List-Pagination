@@ -63,6 +63,7 @@ const appendPageLinks = (list) => {
       li.appendChild(a);
       ul.appendChild(li);
 
+      //Give each a tag an event listener
       a.addEventListener('click', (e) => {
          showPage(list, e.target.textContent);
       });
