@@ -2,6 +2,8 @@
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
+
+//GLOBAL VARIABLES
 const pageHeader = document.querySelector('.page-header');
 const studentList = document.querySelector('.student-list').children;
 
