@@ -2,8 +2,32 @@
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
-
+const pageHeader = document.querySelector('.page-header');
 const studentList = document.querySelector('.student-list').children;
+
+//Create the search HTML
+const createSearch = () => {
+   const searchDiv = document.createElement('div');
+   searchDiv.className = 'student-search';
+
+   //Create input
+   const input = document.createElement('input');
+   input.type = 'text';
+   input.placeholder = "Search for students";
+   searchDiv.appendChild(input);
+
+   //Create search button
+   const searchButton = document.createElement('button');
+   searchButton.textContent = "Search";
+   searchDiv.appendChild(searchButton);
+
+   return searchDiv;
+}
+/*NOTE FOR REVIEWER: Would this be the best way to create all the elements needed for the search HTML and append them?
+I thought it wouldn't be best practice to declare all search elements globally, but I could be wrong! Please mention if
+there is a better way to acheive this. Thank you in andvance! */
+
+pageHeader.appendChild(createSearch());
 
 
 //Hide all students except the ones on page you want to show
