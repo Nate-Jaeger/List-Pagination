@@ -90,7 +90,7 @@ const createSearch = () => {
    //Create input
    const input = document.createElement('input');
    input.type = 'text';
-   input.placeholder = "Search for students";
+   input.placeholder = "Search for students...";
    input.onkeyup = keyUpFunc;
    searchDiv.appendChild(input);
 
@@ -100,7 +100,19 @@ const createSearch = () => {
    searchDiv.appendChild(searchButton);
 
    searchButton.addEventListener('click', (e) => {
-      
+      //Capture input value when search is clicked
+      const inputValue = input.value.toUpperCase();
+
+      for (let i = 0; i < studentList.length; i++){
+         const studentDiv = studentList[i];
+         const student = studentList[i].getElementsByTagName('h3')[0].innerHTML.toUpperCase();
+
+         if(inputValue === student){
+            studentDiv.style.display = '';
+         } else {
+            studentDiv.style.display = 'none';
+         }
+      }
    });
 
    return searchDiv;
