@@ -80,11 +80,6 @@ appendPageLinks(studentList);
 const createSearch = () => {
    const searchedStudents =[];
    const pageLinks = document.getElementsByClassName('pagination')[0];
-  
-   //Create KeyUp function
-   const keyUpFunc = () => {
-      
-   }
    
    //Create Div to store all elements
    const searchDiv = document.createElement('div');
@@ -94,7 +89,6 @@ const createSearch = () => {
    const input = document.createElement('input');
    input.type = 'text';
    input.placeholder = "Search for students...";
-   input.onkeyup = keyUpFunc;
    searchDiv.appendChild(input);
 
    //Create search button
