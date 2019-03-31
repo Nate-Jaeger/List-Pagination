@@ -78,7 +78,7 @@ appendPageLinks(studentList);
 
 //Create the search HTML
 const createSearch = () => {
-   const students =[];
+   const searchedStudents =[];
    const pageLinks = document.getElementsByClassName('pagination')[0];
   
    //Create KeyUp function
@@ -113,19 +113,25 @@ const createSearch = () => {
 
          //Check if student has the input value in it
          if(student.includes(inputValue)){
-            students.push(studentDiv);
+            searchedStudents.push(studentDiv);
             studentDiv.style.display = '';
          } else {
             studentDiv.style.display = 'none';
          }
       }
       //Call showPage function on new found students list
-      showPage(students, 1);
+      showPage(searchedStudents, 1);
       //Remove old list from the page
       webPage.removeChild(pageLinks);
       //Append proper buttons for new search results
-      appendPageLinks(students);
+      appendPageLinks(searchedStudents);
       
+      //Handle "No Results Found"
+      if (searchedStudents.length === 0){
+         const h3 = document.createElement('h3');
+         h3.textContent = 'No Student Found';
+         webPage.appendChild(h3);
+      }
       
    });
 
