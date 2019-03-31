@@ -28,9 +28,9 @@ showPage(studentList, 1);
 /* Function to take studentList and break it into correct amount of pages,
    Then create and append the appropriate amount of li's and a tags,
    Finally add event listeners to each a tag*/
+
 const appendPageLinks = (list) => {
    const webPage = document.querySelector('.page');
-
    //Determine number of pages needed for given list
    const pages = Math.ceil(list.length / 10);
    
@@ -65,10 +65,11 @@ const appendPageLinks = (list) => {
          for(let i = 0; i < pages; i++){
             aTags[i].className = '';
          }
-
          //Assign the class active to the currently clicked button
          event.target.className = 'active';
       });
+      //Make first button active because that will be the default page
+      aTags[0].className = 'active';
    }
    
 }
@@ -79,6 +80,8 @@ appendPageLinks(studentList);
 //Create the search HTML
 const createSearch = () => {
    const students =[];
+   const pageLinks = document.getElementsByClassName('pagination')[0];
+   const pageLinksParent = pageLinks.parentNode;
    //Create KeyUp function
    const keyUpFunc = () => {
       
@@ -104,10 +107,12 @@ const createSearch = () => {
       //Capture input value when search is clicked
       const inputValue = input.value.toUpperCase();
 
+      //Loop over students to see if search matches any student names
       for (let i = 0; i < studentList.length; i++){
          const studentDiv = studentList[i];
          const student = studentList[i].getElementsByTagName('h3')[0].innerHTML.toUpperCase();
 
+         //Check if student has the input value in it
          if(student.includes(inputValue)){
             students.push(studentDiv);
             studentDiv.style.display = '';
@@ -115,7 +120,13 @@ const createSearch = () => {
             studentDiv.style.display = 'none';
          }
       }
+      //Call showPage function on new found students list
       showPage(students, 1);
+      //Append proper buttons for new search results
+      appendPageLinks(students);
+      //Remove old list from the page
+      pageLinksParent.removeChild(pageLinks);
+      
    });
 
    return searchDiv;
