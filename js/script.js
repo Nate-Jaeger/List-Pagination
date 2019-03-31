@@ -15,9 +15,9 @@ const showPage = (list, page) => {
       const minIndex = (page * 10) - 10;
       
       if (i >= minIndex && i <= maxIndex){
-         studentList[i].style.display = '';
+         list[i].style.display = '';
       } else {
-         studentList[i].style.display = 'none';
+         list[i].style.display = 'none';
       }
    }
 }
@@ -63,7 +63,7 @@ const appendPageLinks = (list) => {
 
          //Clear active class from each <a> tag
          for(let i = 0; i < pages; i++){
-            aTags[i].className = 'inActive';
+            aTags[i].className = '';
          }
 
          //Assign the class active to the currently clicked button
@@ -78,6 +78,7 @@ appendPageLinks(studentList);
 
 //Create the search HTML
 const createSearch = () => {
+   const students =[];
    //Create KeyUp function
    const keyUpFunc = () => {
       
@@ -108,11 +109,13 @@ const createSearch = () => {
          const student = studentList[i].getElementsByTagName('h3')[0].innerHTML.toUpperCase();
 
          if(student.includes(inputValue)){
+            students.push(studentDiv);
             studentDiv.style.display = '';
          } else {
             studentDiv.style.display = 'none';
          }
       }
+      showPage(students, 1);
    });
 
    return searchDiv;
