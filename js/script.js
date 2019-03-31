@@ -107,7 +107,7 @@ const createSearch = () => {
          const studentDiv = studentList[i];
          const student = studentList[i].getElementsByTagName('h3')[0].innerHTML.toUpperCase();
 
-         if(inputValue === student){
+         if(student.includes(inputValue)){
             studentDiv.style.display = '';
          } else {
             studentDiv.style.display = 'none';
