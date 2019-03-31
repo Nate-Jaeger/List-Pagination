@@ -6,7 +6,7 @@ FSJS project 2 - List Filter and Pagination
 //GLOBAL VARIABLES
 const pageHeader = document.querySelector('.page-header');
 const studentList = document.querySelector('.student-list').children;
-
+const webPage = document.querySelector('.page');
 
 //Hide all students except the ones on page you want to show
 const showPage = (list, page) => {
@@ -30,7 +30,6 @@ showPage(studentList, 1);
    Finally add event listeners to each a tag*/
 
 const appendPageLinks = (list) => {
-   const webPage = document.querySelector('.page');
    //Determine number of pages needed for given list
    const pages = Math.ceil(list.length / 10);
    
@@ -81,7 +80,7 @@ appendPageLinks(studentList);
 const createSearch = () => {
    const students =[];
    const pageLinks = document.getElementsByClassName('pagination')[0];
-   const pageLinksParent = pageLinks.parentNode;
+  
    //Create KeyUp function
    const keyUpFunc = () => {
       
@@ -122,10 +121,11 @@ const createSearch = () => {
       }
       //Call showPage function on new found students list
       showPage(students, 1);
+      //Remove old list from the page
+      webPage.removeChild(pageLinks);
       //Append proper buttons for new search results
       appendPageLinks(students);
-      //Remove old list from the page
-      pageLinksParent.removeChild(pageLinks);
+      
       
    });
 
