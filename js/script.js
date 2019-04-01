@@ -78,7 +78,6 @@ appendPageLinks(studentList);
 //Create the search HTML
 const createSearch = () => {
    const searchedStudents =[];
-   const pageLinks = document.querySelector('.pagination');
    
    //Create Div to store all elements
    const searchDiv = document.createElement('div');
@@ -95,17 +94,18 @@ const createSearch = () => {
    searchButton.textContent = "Search";
    searchDiv.appendChild(searchButton);
 
-   searchButton.addEventListener('click', (e) => {
+   searchButton.addEventListener('click', () => {
       //Capture input value when search is clicked
       const inputValue = input.value.toUpperCase();
+      const pageLinks = document.querySelector('.pagination');
 
       //Loop over students to see if search matches any student names
       for (let i = 0; i < studentList.length; i++){
          const studentDiv = studentList[i];
-         const student = studentList[i].getElementsByTagName('h3')[0].innerHTML.toUpperCase();
+         const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
 
          //Check if student has the input value in it
-         if(student.includes(inputValue)){
+         if(studentName.includes(inputValue)){
             searchedStudents.push(studentDiv);
             studentDiv.style.display = '';
          } else {
@@ -125,7 +125,6 @@ const createSearch = () => {
          h3.textContent = 'No Results Found';
          webPage.appendChild(h3);
       }
-      
    });
 
    return searchDiv;
