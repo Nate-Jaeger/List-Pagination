@@ -70,7 +70,6 @@ const appendPageLinks = (list) => {
       //Make first button active because that will be the default page
       aTags[0].className = 'active';
    }
-   
 }
 
 appendPageLinks(studentList);
@@ -79,7 +78,7 @@ appendPageLinks(studentList);
 //Create the search HTML
 const createSearch = () => {
    const searchedStudents =[];
-   const pageLinks = document.getElementsByClassName('pagination')[0];
+   const pageLinks = document.querySelector('.pagination');
    
    //Create Div to store all elements
    const searchDiv = document.createElement('div');
@@ -123,7 +122,7 @@ const createSearch = () => {
       //Handle "No Results Found"
       if (searchedStudents.length === 0){
          const h3 = document.createElement('h3');
-         h3.textContent = 'No Student Found';
+         h3.textContent = 'No Results Found';
          webPage.appendChild(h3);
       }
       
