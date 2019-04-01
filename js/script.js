@@ -94,6 +94,7 @@ const createSearch = () => {
    searchButton.textContent = "Search";
    searchDiv.appendChild(searchButton);
 
+   //Add a click event to the function
    searchButton.addEventListener('click', () => {
       //Capture input value when search is clicked
       const inputValue = input.value.toUpperCase();
@@ -125,6 +126,14 @@ const createSearch = () => {
          h3.textContent = 'No Results Found';
          webPage.appendChild(h3);
       }
+   });
+
+   //Add the keyUp event
+   input.addEventListener('keyup', (e) => {
+      //Capture what has been typed
+      const inputValue = input.value.toUpperCase();
+
+
    });
 
    return searchDiv;
