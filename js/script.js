@@ -77,7 +77,6 @@ appendPageLinks(studentList);
 
 //Create the search HTML
 const createSearch = () => {
-   const searchedStudents =[];
    
    //Create Div to store all elements
    const searchDiv = document.createElement('div');
@@ -96,6 +95,8 @@ const createSearch = () => {
 
    //Add a click event to the function
    searchButton.addEventListener('click', () => {
+      //Create empty array to push found students into
+      const searchedStudents =[];
       //Capture input value when search is clicked
       const inputValue = input.value.toUpperCase();
       const pageLinks = document.querySelector('.pagination');
@@ -113,10 +114,11 @@ const createSearch = () => {
             studentDiv.style.display = 'none';
          }
       }
+      
       //Call showPage function on new found students list
       showPage(searchedStudents, 1);
       //Remove old list from the page
-      webPage.removeChild(pageLinks);
+      pageLinks.remove();
       //Append proper buttons for new search results
       appendPageLinks(searchedStudents);
       
@@ -125,16 +127,39 @@ const createSearch = () => {
          const h3 = document.createElement('h3');
          h3.textContent = 'No Results Found';
          webPage.appendChild(h3);
+      } else {
+         //Removes the No Results Found H3 if one is found
+         if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
+            document.querySelector('.student-list').nextElementSibling.remove();
+         }
       }
    });
-
+   /*
    //Add the keyUp event
    input.addEventListener('keyup', (e) => {
       //Capture what has been typed
-      const inputValue = input.value.toUpperCase();
+      const inputValue = event.target.value;
+      const pageLinks = document.querySelector('.pagination');
+      
+      for (let i = 0; i < studentList.length; i++) {
+         const studentDiv = studentList[i];
+         const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
 
-
-   });
+         //Check if student has the input value in it
+         if(studentName.includes(inputValue)){
+            searchedStudents.push(studentDiv);
+            studentDiv.style.display = '';
+         } else {
+            studentDiv.style.display = 'none';
+         }
+      }
+      //Call showPage function on new found students list
+      showPage(searchedStudents, 1);
+      //Remove old list from the page
+      webPage.removeChild(pageLinks);
+      //Append proper buttons for new search results
+      appendPageLinks(searchedStudents);
+   }); */
 
    return searchDiv;
 }
