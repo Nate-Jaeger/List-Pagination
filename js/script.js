@@ -28,7 +28,6 @@ showPage(studentList, 1);
 /* Function to take studentList and break it into correct amount of pages,
    Then create and append the appropriate amount of li's and a tags,
    Finally add event listeners to each a tag*/
-
 const appendPageLinks = (list) => {
    //Determine number of pages needed for given list
    const pages = Math.ceil(list.length / 10);
