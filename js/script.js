@@ -93,50 +93,8 @@ const createSearch = () => {
    searchButton.textContent = "Search";
    searchDiv.appendChild(searchButton);
 
-   /*//Add a click event to the search button
-   searchButton.addEventListener('click', () => {
-      //Create empty array to push found students into
-      const searchedStudents =[];
-      //Capture input value when search is clicked
-      const inputValue = input.value.toUpperCase();
-      const pageLinks = document.querySelector('.pagination');
-
-      //Loop over students to see if search matches any student names
-      for (let i = 0; i < studentList.length; i++){
-         const studentDiv = studentList[i];
-         const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
-
-         //Check if student has the input value in it
-         if(studentName.includes(inputValue)){
-            searchedStudents.push(studentDiv);
-            studentDiv.style.display = '';
-         } else {
-            studentDiv.style.display = 'none';
-         }
-      }
-      
-      //Call showPage function on new found students list
-      showPage(searchedStudents, 1);
-      //Remove old list from the page
-      pageLinks.remove();
-      //Append proper buttons for new search results
-      appendPageLinks(searchedStudents);
-      
-      //Handle "No Results Found"
-      if (searchedStudents.length === 0){
-         const h3 = document.createElement('h3');
-         h3.textContent = 'No Results Found';
-         webPage.appendChild(h3);
-      } else {
-         //Removes the No Results Found H3 if one is found
-         if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
-            document.querySelector('.student-list').nextElementSibling.remove();
-         }
-      }
-   }); */
-   
-   //Add the keyUp event
-   input.addEventListener('keyup', (e) => {
+   //Create callback function for search event listeners
+   const search = (e) => {
       //Capture what has been typed
       const inputValue = event.target.value.toUpperCase();
       const pageLinks = document.querySelector('.pagination');
@@ -144,8 +102,8 @@ const createSearch = () => {
       for (let i = 0; i < studentList.length; i++) {
          const studentDiv = studentList[i];
          const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
-
-         //Check if student has the input value in it
+ 
+          //Check if student has the input value in it
          if(studentName.includes(inputValue)){
             searchedStudents.push(studentDiv);
             studentDiv.style.display = '';
@@ -156,22 +114,29 @@ const createSearch = () => {
       //Call showPage function on new found students list
       showPage(searchedStudents, 1);
       //Remove old list from the page
-      webPage.removeChild(pageLinks);
-      //Append proper buttons for new search results
-      appendPageLinks(searchedStudents);
+    webPage.removeChild(pageLinks);
+    //Append proper buttons for new search results
+    appendPageLinks(searchedStudents);
 
-      //Handle "No Results Found"
-      if (searchedStudents.length === 0){
-         const h3 = document.createElement('h3');
-         h3.textContent = 'No Results Found';
-         webPage.appendChild(h3);
-      } else {
-         //Removes the No Results Found H3 if one is found
-         if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
-            document.querySelector('.student-list').nextElementSibling.remove();
-         }
-      }
-   }); 
+    //Handle "No Results Found"
+     if (searchedStudents.length === 0){
+       const h3 = document.createElement('h3');
+        h3.textContent = 'No Results Found';
+        webPage.appendChild(h3);
+     } else {
+        //Removes the No Results Found H3 if one is found
+       if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
+           document.querySelector('.student-list').nextElementSibling.remove();
+        }
+    }
+   }
+
+
+   //Add a click event to the search button
+   searchButton.addEventListener('click', search);
+   
+   //Add the keyUp event
+   input.addEventListener('keyup', search); 
 
    return searchDiv;
 }
