@@ -94,9 +94,8 @@ const createSearch = () => {
    searchDiv.appendChild(searchButton);
 
    //Create callback function for searching input on events
-   const search = (e) => {
-      //Capture what has been typed
-      const inputValue = event.target.value.toUpperCase();
+   const search = (event) => {
+      const inputValue = input.value.toUpperCase();
       const pageLinks = document.querySelector('.pagination');
       const searchedStudents = [];
 
@@ -105,7 +104,7 @@ const createSearch = () => {
          const studentDiv = studentList[i];
          const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
  
-          //Check if student has the input value in it
+          //Check if studentName has the inputValue in it
          if(studentName.includes(inputValue)){
             searchedStudents.push(studentDiv);
             studentDiv.style.display = '';
@@ -113,12 +112,6 @@ const createSearch = () => {
             studentDiv.style.display = 'none';
          }
       }
-      //Call showPage function on new found students list
-      showPage(searchedStudents, 1);
-      //Remove old list from the page
-      webPage.removeChild(pageLinks);
-      //Append proper buttons for new search results
-      appendPageLinks(searchedStudents);
 
       //Handle "No Results Found"
       if (searchedStudents.length === 0){
@@ -131,6 +124,12 @@ const createSearch = () => {
             document.querySelector('.student-list').nextElementSibling.remove();
          }
       }
+      //Call showPage function on new found students list
+      showPage(searchedStudents, 1);
+      //Remove old list from the page
+      webPage.removeChild(pageLinks);
+      //Append proper buttons for new search results
+      appendPageLinks(searchedStudents);
    }
 
    searchButton.addEventListener('click', search);
