@@ -94,7 +94,7 @@ const createSearch = () => {
    searchDiv.appendChild(searchButton);
 
    //Create callback function for searching input on events
-   const search = (event) => {
+   const search = () => {
       const inputValue = input.value.toUpperCase();
       const pageLinks = document.querySelector('.pagination');
       const searchedStudents = [];
