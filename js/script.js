@@ -93,12 +93,14 @@ const createSearch = () => {
    searchButton.textContent = "Search";
    searchDiv.appendChild(searchButton);
 
-   //Create callback function for search event listeners
+   //Create callback function for searching input on events
    const search = (e) => {
       //Capture what has been typed
       const inputValue = event.target.value.toUpperCase();
       const pageLinks = document.querySelector('.pagination');
       const searchedStudents = [];
+
+      //Loop through studentList and see if input is equal to a name
       for (let i = 0; i < studentList.length; i++) {
          const studentDiv = studentList[i];
          const studentName = studentDiv.getElementsByTagName('h3')[0].innerHTML.toUpperCase();
@@ -114,29 +116,25 @@ const createSearch = () => {
       //Call showPage function on new found students list
       showPage(searchedStudents, 1);
       //Remove old list from the page
-    webPage.removeChild(pageLinks);
-    //Append proper buttons for new search results
-    appendPageLinks(searchedStudents);
+      webPage.removeChild(pageLinks);
+      //Append proper buttons for new search results
+      appendPageLinks(searchedStudents);
 
-    //Handle "No Results Found"
-     if (searchedStudents.length === 0){
-       const h3 = document.createElement('h3');
-        h3.textContent = 'No Results Found';
-        webPage.appendChild(h3);
-     } else {
-        //Removes the No Results Found H3 if one is found
-       if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
-           document.querySelector('.student-list').nextElementSibling.remove();
-        }
-    }
+      //Handle "No Results Found"
+      if (searchedStudents.length === 0){
+         const h3 = document.createElement('h3');
+         h3.textContent = 'No Results Found';
+         webPage.appendChild(h3);
+      } else {
+         //Removes the No Results Found H3 if one is found
+         if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
+            document.querySelector('.student-list').nextElementSibling.remove();
+         }
+      }
    }
 
-
-   //Add a click event to the search button
    searchButton.addEventListener('click', search);
-   
-   //Add the keyUp event
-   input.addEventListener('keyup', search); 
+   input.addEventListener('keyup', search);
 
    return searchDiv;
 }
