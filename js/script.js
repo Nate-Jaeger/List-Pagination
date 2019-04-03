@@ -28,6 +28,7 @@ showPage(studentList, 1);
 /* Function to take studentList and break it into correct amount of pages,
    Then create and append the appropriate amount of li's and a tags,
    Finally add event listeners to each a tag*/
+
 const appendPageLinks = (list) => {
    //Determine number of pages needed for given list
    const pages = Math.ceil(list.length / 10);
@@ -115,14 +116,15 @@ const createSearch = () => {
       //Handle "No Results Found"
       if (searchedStudents.length === 0){
          const h3 = document.createElement('h3');
+         h3.className = 'noResults';
          h3.textContent = 'No Results Found';
-         webPage.appendChild(h3);
-      } else {
-         //Removes the No Results Found H3 if one is found
-         if (document.querySelector('.student-list').nextElementSibling.innerHTML === "No Results Found"){
-            document.querySelector('.student-list').nextElementSibling.remove();
+         
+         //Check if No Results has been printed before and remove it
+         if(!document.querySelector('.noResults')){
+            webPage.appendChild(h3);
          }
       }
+
       //Call showPage function on new found students list
       showPage(searchedStudents, 1);
       //Remove old list from the page
